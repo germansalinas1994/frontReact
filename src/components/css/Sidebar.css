@@ -1,0 +1,20 @@
+.sidebar {
+    position: fixed;
+    right: -25%; /* inicialmente oculto a la derecha */
+    top: 0;
+    width: 25%; /* ancho del sidebar */
+    height: 100%; /* altura completa */
+    background-color: #f5f5f5; /* color de fondo */
+    transition: right 0.3s ease-in-out; /* animación para que aparezca y desaparezca suavemente */
+    padding: 20px; /* espacio alrededor del contenido */
+    overflow-y: auto; /* para que sea scrollable si el contenido es muy largo */
+  }
+  
+  .sidebar.open {
+    right: 0; /* cuando está abierto, el borde derecho coincide con el borde derecho de la pantalla */
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
