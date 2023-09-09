@@ -26,8 +26,10 @@ const Producto = () => {
 
   //funcion para mostrar todos los productos
   const getProductos = async () => {
+    debugger;
     try {
       const res = await axios.get(urlGetProductos);
+      debugger;
       setProductos(res.data); //actualizo el estado del componente con los datos que me devuelve la api
 
     } catch (error) {
@@ -50,7 +52,7 @@ const Producto = () => {
             <p className='producto-precio-cliente'>
               Precio: <NumericFormat value={producto.Precio} displayType={'text'} prefix={'$'} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true} />
             </p>
-            <p className='producto-stock-cliente'>Stock: {producto.Stock}</p>
+            {/* <p className='producto-stock-cliente'>Stock: {producto.Stock}</p> */}
             <p className='producto-categoria-cliente'>Categoría: {producto.Categoria.Nombre}</p>
             <div className='producto-acciones-cliente'>
               <button className='btn-cliente btn-primary-cliente' onClick={() => toggleSidebar()}>

@@ -17,7 +17,7 @@ const CrearProducto = () => {
     const [Nombre, SetNombre] = useState("");
     const [Descripcion, SetDescripcion] = useState("");
     const [Precio, SetPrecio] = useState("");
-    const [Stock, SetStock] = useState("");
+    // const [Stock, SetStock] = useState("");
     const [Id_Categoria, SetIdCategoria] = useState("");
     const [Url_Imagen, SetImagen] = useState("");
     const navigate = useNavigate(); //el usenavigate es para poder navegar entre paginas
@@ -72,18 +72,18 @@ const CrearProducto = () => {
             document.getElementById("error-precio").hidden = true;
         }
     }
-    const handleStockChange = (e) => {
+    // const handleStockChange = (e) => {
         
-        var stock = parseInt(e.target.value);
-        if (stock < 0) {
-            document.getElementById("error-stock").hidden = false;
-            return;
-        }
+    //     var stock = parseInt(e.target.value);
+    //     if (stock < 0) {
+    //         document.getElementById("error-stock").hidden = false;
+    //         return;
+    //     }
 
-        SetStock(e.target.value);
-        document.getElementById("error-stock").hidden = true;
+    //     SetStock(e.target.value);
+    //     document.getElementById("error-stock").hidden = true;
 
-    }
+    // }
     const handleCategoriaChange = (e) => {
         SetIdCategoria(e.target.value);
         if (e.target.value.length > 0) {
@@ -117,10 +117,10 @@ const CrearProducto = () => {
             document.getElementById("error-precio").hidden = false;
             valida = false;
         }
-        if (!Stock || Stock < 0) {
-            document.getElementById("error-stock").hidden = false;
-            valida = false;
-        }
+        // if (!Stock || Stock < 0) {
+        //     document.getElementById("error-stock").hidden = false;
+        //     valida = false;
+        // }
         if (!Id_Categoria) {
             document.getElementById("error-categoria").hidden = false;
             valida = false;
@@ -166,7 +166,7 @@ const CrearProducto = () => {
                             Nombre,
                             Descripcion,
                             Precio,
-                            Stock,
+                            // Stock,
                             Id_Categoria,
                             Url_Imagen: url
                         });
@@ -255,10 +255,8 @@ const CrearProducto = () => {
                             />
                             <span hidden id="error-precio" className="text-danger">Debe ingresar un precio.</span>
                         </div>
-                        <div className="form-group mb-3 w-33">
+                        {/* <div className="form-group mb-3 w-33">
                             <label className="form-label">Stock</label>
-                            {/* <input name="Stock" placeholder="Ingrese un Stock" type="text" className="form-control" onChange={(e) => SetStock(parseInt(e.target.value))} aria-describedby="inputGroupPrepend" /> */}
-                            {/* <input name="Stock" placeholder="Ingrese un Stock" type="text" className="form-control" onChange={handleStockChange} aria-describedby="inputGroupPrepend" /> */}
                             <NumericFormat
                                 name="Stock"
                                 placeholder="Ingrese un Stock"
@@ -269,7 +267,7 @@ const CrearProducto = () => {
                             />
 
                             <span hidden id="error-stock" className="text-danger">Debe ingresar un stock válido.</span>
-                        </div>
+                        </div> */}
                         <div className="form-group mb-3 w-33">
                             <label className="form-label">Categoria</label>
                             {/* <select name="Id_Categoria" className="form-select selectize" onChange={(e) => SetIdCategoria(parseInt(e.target.value))} > */}

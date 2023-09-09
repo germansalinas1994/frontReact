@@ -92,7 +92,7 @@ const GetProductosAdministrador = () => {
                         <p className='producto-precio-admin'>
                             Precio: <NumericFormat value={producto.Precio} displayType={'text'} prefix={'$'} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true} />
                         </p>
-                        <p className='producto-stock-admin'>Stock: {producto.Stock}</p>
+                        {/* <p className='producto-stock-admin'>Stock: {producto.Stock}</p> */}
                         <p className='producto-categoria-admin'>Categoría: {producto.Categoria.Nombre}</p>
                         <div className='producto-acciones-admin'>
                             <Link to={`/editarProducto/${producto.Id}`} className='btn btn-info'>
