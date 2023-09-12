@@ -8,7 +8,7 @@ import titulo from './images/Titulo.png'
 import './css/Header.css';
 import { text } from "@fortawesome/fontawesome-svg-core";
 
-function Header(props) {
+function Header({loginWithRedirect, ...props}) {
     return (
         <header className="header">
             <div className="logo-container header-title">
@@ -20,7 +20,8 @@ function Header(props) {
                 <button id="idMarca" className="header-button">MARCAS</button>
                 <button className="header-button">SUCURSALES</button>
                 <button className="header-button">TIENDA</button>
-                <button className="header-button">MI CUENTA</button>
+                <button className="header-button" >MI CUENTA</button>
+                <button onClick={()=>loginWithRedirect()} className="header-button" >LOGIN</button>
             </div>
             <div className="mt-1 mb-1">
                 </div>
