@@ -95,6 +95,8 @@
   margin-right: 1rem;
   padding: 0;
   cursor: pointer;
+  text-decoration: none;
+
 }
 
 .header-button:hover {
