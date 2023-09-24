@@ -49,13 +49,11 @@ const Profile = () => {
                     <img src={user.picture} alt={user.name} />
                     <h2>{user.name}</h2>
                     <p>{user.email}</p>
-                    <Link to="/miPerfil" className="header-button">MI PERFIL</Link>
                 </div>
             ) : (
                 Swal.close(),
 
                 <div>
-                    <h2>Debes iniciar sesión para ver tu perfil</h2>
                 </div>
             )}
 

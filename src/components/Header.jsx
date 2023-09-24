@@ -12,9 +12,27 @@ import LoginButton from "./login";
 import LogoutButton from "./logout";
 import Profile from "./profile";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 function Header({...props}) {
-    const {isAuthenticated, isLoading} = useAuth0();
+    const {isAuthenticated, isLoading, getIdTokenClaims} = useAuth0();
+
+    useEffect(() => {
+        const getToken = async () => {
+          try {
+            debugger;
+            const token = await getIdTokenClaims();
+            console.log(token);
+          } catch (error) {
+            console.error("Error al obtener el token:", error);
+          }
+        };
+    
+        if (isAuthenticated) {
+          getToken();
+        }
+      }, [isAuthenticated, getIdTokenClaims]);
+
     const showLoadingModal = () => {
         Swal.fire({
             title: 'Cargando',
@@ -53,7 +71,7 @@ function Header({...props}) {
                 <button id="idMarca" className="header-button">MARCAS</button>
                 <button className="header-button">SUCURSALES</button>
                 <button className="header-button">TIENDA</button>
-                <Link to="/miPerfil" className="header-button">MI PERFIL</Link>
+                {isAuthenticated ? <Link to="/miPerfil" className="header-button">MI PERFIL</Link> : <div></div>}
                 {isAuthenticated ? <LogoutButton /> : <LoginButton />}
  
                 
