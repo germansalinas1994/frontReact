@@ -9,6 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import React, { Fragment } from 'react'; //importo para poder usar el fragment 
 import Home from './components/Home';
 import Profile from './components/profile';
+import Sucursales from './components/sucursales';
 //el fragment es un componente que no se renderiza pero que me permite agrupar elementos
 
 
@@ -29,6 +30,8 @@ function App() {
             <Route path='/crearProducto' element={<CrearProducto />}></Route>
             <Route path='/editarProducto/:id' element={<EditarProducto />}></Route>
             <Route path='/miPerfil' element={<Profile />}></Route>
+            <Route path='/sucursales' element={<Sucursales />}></Route>
+
           </Routes>
           
           <Footer />

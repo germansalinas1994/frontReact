@@ -56,8 +56,8 @@ function Header({...props}) {
     }
 
 
-    if(isLoading) {
-        return <div>   {showLoadingModal()}</div>
+    if(isLoading && !isAuthenticated) {
+        return <div>{showLoadingModal()}</div>
     }
     return (
         Swal.close(),
@@ -69,11 +69,11 @@ function Header({...props}) {
             </div>
             <div className="buttons-container">
                 <button id="idMarca" className="header-button">MARCAS</button>
-                <button className="header-button">SUCURSALES</button>
+                <Link to="/sucursales" className="header-button">SUCURSALES</Link>
                 <button className="header-button">TIENDA</button>
                 {isAuthenticated ? <Link to="/miPerfil" className="header-button">MI PERFIL</Link> : <div></div>}
                 {isAuthenticated ? <LogoutButton /> : <LoginButton />}
- 
+
                 
                 {/* <button onClick={()=>loginWithRedirect()} className="header-button" >LOGIN</button> */}
             

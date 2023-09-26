@@ -37,7 +37,7 @@ const Profile = () => {
 
     return (
         <div>
-            {/* {JSON.stringify(user, null, 2)} */}
+            {/* {JSON.stringify(user)} */}
             {isLoading ? (
                 <div>
                     {showLoadingModal()}
@@ -45,7 +45,9 @@ const Profile = () => {
 
             ) : isAuthenticated ? (
                 Swal.close(),
+                
                 <div>
+                    <h2>{user.rol_usuario[0]}</h2>
                     <img src={user.picture} alt={user.name} />
                     <h2>{user.name}</h2>
                     <p>{user.email}</p>
