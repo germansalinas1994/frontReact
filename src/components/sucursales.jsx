@@ -25,30 +25,41 @@ const Sucursales = () => {
     }
 
 
-
-    return (
-        <div>
-            <h1 className="text-center mt-5 mb-5">Sucursales</h1>
-            <table className="table table-light table-striped">
-            <thead className="table-secondary">
-                    <tr>
-                        <th scope="col">Número Sucursal</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Dirección</th>
-                    </tr>
-                </thead>
-                <tbody className="table-group-divider">
-                    {sucursales.map((sucursal) => (
-                        <tr key={sucursal.Id}>
-                            <th scope="row">{sucursal.Id}</th>
-                            <td>{sucursal.Nombre}</td>
-                            <td>{sucursal.Direccion}</td>
+    if(sucursales.length > 0){
+        return (
+        
+            <div>
+                <h1 className="text-center mt-5 mb-5">Sucursales</h1>
+                <table className="table table-light table-striped">
+                <thead className="table-secondary">
+                        <tr>
+                            <th scope="col">Número Sucursal</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Dirección</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    )
+                    </thead>
+                    <tbody className="table-group-divider">
+                        {sucursales.map((sucursal) => (
+                            <tr key={sucursal.Id}>
+                                <th scope="row">{sucursal.Id}</th>
+                                <td>{sucursal.Nombre}</td>
+                                <td>{sucursal.Direccion}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        )
+    
+    }
+    else{
+        return (
+            <div>
+                <h3 className="text-center mt-5 mb-5">No hay sucursales registradas</h3>
+            </div>
+        )
+    }
+    
 }
 
 export default Sucursales;
