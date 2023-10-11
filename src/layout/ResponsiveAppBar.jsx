@@ -14,7 +14,10 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import PinterestIcon from '@mui/icons-material/Pinterest';
-import Titulo from '../../public/Titulo.png'
+import BotonCarrito from '../components/Botones/BotonCarrito';
+import Titulo from '../../public/Titulo.png';
+import favicon from '../../public/favicon.png';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 
@@ -28,10 +31,11 @@ const pagesNav = [
 ]
 
 const settings = [
-  { id: 1, name: 'Perfil', route: '/perfil' },
-  { id: 2, name: 'Cuenta', route: '/cuenta' },
-  { id: 3, name: 'Dashboard', route: '/dashboard' },
-  { id: 4, name: 'Logout', route: '/logout' }
+  { id: 1, name: 'Pedidos', route: '/pedidos' },
+  { id: 2, name: 'Direcciones', route: '/direcciones' },
+  { id: 3, name: 'Favoritos', route: '/favoritos' },
+  { id: 4, name: 'Cuenta', route: '/cuenta' },
+  { id: 5, name: 'Salir', route: '/logout' }
 ]
 
 
@@ -55,7 +59,9 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-
+  
+  const isXsScreen = useMediaQuery((theme) => theme.breakpoints.down('xs'));
+  const isMdScreen = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -66,33 +72,19 @@ function ResponsiveAppBar() {
       <Toolbar disableGutters>
 
 
-
         {/* Aca esta el logo */}
         <Link to={'/'} style={{ color: 'inherit', textDecoration: 'none' }}>
-          <img src={Titulo} alt="Logo" style={{ height: '50px', width: 'auto' }} />
-        </Link>
-
-        {/* esto es el texto del logo */}
-        {/* el boton me tiene que llevar a la pagina de inicio */}
-        <Link to={'/'} style={{ color: 'inherit', textDecoration: 'none' }}>
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+          <img
+            src={Titulo}
+            alt="Logo"
+            style={{
+              height: '50px',
+              width: 'auto',
+              display: isXsScreen ? 'none' : isMdScreen ? 'flex' : 'none'
             }}
-          >
-            
-          </Typography>
+          />
         </Link>
+        
 
 
         {/* este box es para el menu de navegacion si esta la pantalla contraida */}
@@ -104,7 +96,7 @@ function ResponsiveAppBar() {
           >
             <Link to={'/home'} style={{ color: 'inherit', textDecoration: 'none' }}>
 
-              <PinterestIcon sx={{ flexGrow: 1, display: { xs: 'flex' }, mr: 1 }} />
+            <img src={favicon} alt="Logo" style={{ height: '40px', width: 'auto' }} />
             </Link>
           </IconButton>
           <IconButton
@@ -142,12 +134,15 @@ function ResponsiveAppBar() {
             }}
           >
             {pagesNav.map((page) => (
-              <Link to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
-
-                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              </Link>
+              <MenuItem
+                key={page.id}
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to={page.route.toLowerCase()}
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                <Typography textAlign="center">{page.name}</Typography>
+              </MenuItem>
 
             ))}
           </Menu>
@@ -157,14 +152,11 @@ function ResponsiveAppBar() {
         {/* este box es para el menu de navegacion si esta la pantalla expandida */}
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           {pagesNav.map((page) => (
-            <Link to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
-
+            <Link key={page.id} to={page.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
               <Button
-                key={page.id}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.name}
-
               </Button>
             </Link>))}
         </Box>
@@ -176,12 +168,17 @@ function ResponsiveAppBar() {
 
 
         <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
+        <IconButton sx={{ mr: 3}}>
+          <BotonCarrito  />  
+          </IconButton>
+          <Tooltip title="Abrir opciones">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               {/* en el src del avatar va la imagen del usuario, por ahora es una imagen de prueba, despues va a ser la imagen del usuario logueado */}
               <Avatar alt="Remy Sharp" src="https://mui.com/static/images/avatar/2.jpg" />
             </IconButton>
           </Tooltip>
+   
+
           <Menu
             sx={{ mt: '45px' }}
             id="menu-appbar"
@@ -199,13 +196,16 @@ function ResponsiveAppBar() {
             onClose={handleCloseUserMenu}
           >
             {settings.map((setting) => (
-              <Link to={setting.route.toLowerCase()} style={{ color: 'inherit', textDecoration: 'none' }}>
+              <MenuItem
+                key={setting.id}
+                onClick={handleCloseUserMenu}
+                component={Link}
+                to={setting.route.toLowerCase()}
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                <Typography textAlign="center">{setting.name}</Typography>
+              </MenuItem>
 
-                <MenuItem key={setting.id} onClick={handleCloseUserMenu}>
-
-                  <Typography textAlign="center">{setting.name}</Typography>
-                </MenuItem>
-              </Link>
 
             ))}
           </Menu>
